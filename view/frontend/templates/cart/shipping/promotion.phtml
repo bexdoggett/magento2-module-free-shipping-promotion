@@ -6,7 +6,8 @@
  */
 ?>
 <?php if ($block->isFreeShippingActive() && $block->getFreeShippingMinimumOrderAmount()): ?>
-    <div data-block="free-shipping-promotion"
+    <div class="block shipping-promotion"
+         data-block="free-shipping-promotion"
          data-bind="scope: 'spend-x-get-free-shipping'"
     >
         <!-- ko template: getTemplate() --><!-- /ko -->

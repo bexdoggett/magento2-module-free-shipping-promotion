@@ -78,11 +78,11 @@ class ShippingPromotion extends Template
     /**
      * Convert minimum order amount using current store currency
      *
-     * @return string | null
+     * @return string | float
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getFreeShippingMinimumOrderAmountInStoreCurrency(): ?string
+    public function getFreeShippingMinimumOrderAmountInStoreCurrency(): string|float
     {
         $minAmount = $this->getFreeShippingMinimumOrderAmount();
         $currentCurrency = $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
