@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * @var BeckyDoggett\FreeShippingPromotion\Block\Cart\ShippingPromotion $block
+ * @var Magento\Framework\Escaper $escaper
+ */
+?>
+<?php if ($block->isFreeShippingActive()): ?>
+    <?= $escaper->escapeHtml($block->getFreeShippingMinimumOrderAmount()); ?>
+<?php endif; ?>
