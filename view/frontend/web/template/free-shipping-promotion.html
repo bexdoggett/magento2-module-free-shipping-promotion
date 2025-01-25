@@ -1,0 +1,14 @@
+<div data-bind="if: getCartItemsTotal() > 0">
+    <!-- ko if: hasFreeShipping() -->
+    <div>
+        <p data-bind="i18n: 'Your order is eligible for Free Shipping!'"></p>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: hasFreeShipping() -->
+    <div>
+        <p data-bind="i18n: 'Free Shipping'"></p>
+        <p data-bind="text: getFreeShippingMessage()"></p>
+        <p data-bind="text: getSpendXForFreeShippingMessage()"></p>
+    </div>
+    <!-- /ko -->
+</div>

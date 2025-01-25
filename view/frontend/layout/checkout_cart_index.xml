@@ -8,6 +8,5 @@
                    ifconfig="carriers/freeshipping/promote_in_cart"
                    template="BeckyDoggett_FreeShippingPromotion::cart/shipping/promotion.phtml"/>
         </referenceContainer>
-
     </body>
 </page>

@@ -5,6 +5,25 @@
  * @var Magento\Framework\Escaper $escaper
  */
 ?>
-<?php if ($block->isFreeShippingActive()): ?>
-    <?= $escaper->escapeHtml($block->getFreeShippingMinimumOrderAmount()); ?>
+<?php if ($block->isFreeShippingActive() && $block->getFreeShippingMinimumOrderAmount()): ?>
+    <div data-block="free-shipping-promotion"
+         data-bind="scope: 'spend-x-get-free-shipping'"
+    >
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components" : {
+                        "spend-x-get-free-shipping" : {
+                            "component" : "BeckyDoggett_FreeShippingPromotion/js/view/free-shipping-promotion",
+                            "minimumOrderAmount" : "<?= $escaper->escapeJs($block->getFreeShippingMinimumOrderAmountInStoreCurrency());?>",
+                            "priceLocaleFormat" : <?= /* @noEscape */ $block->getLocalePriceFormatJson() ?>
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 <?php endif; ?>
