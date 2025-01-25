@@ -5,6 +5,7 @@
         <carriers>
             <freeshipping>
                 <promote_in_cart>0</promote_in_cart>
+                <promote_in_minicart>0</promote_in_minicart>
             </freeshipping>
         </carriers>
     </default>

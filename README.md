@@ -12,3 +12,9 @@ to qualify is output in the cart.
 
 If they are over the minimum order amount for free delivery they are notified
 
+## Configuration
+Ability to enable promotion in the cart:
+`System > Sales > Delivery Method > Free Shipping > Promote Free Shipping in Cart`
+
+Ability to enable promotion in the mini cart:
+`System > Sales > Delivery Method > Free Shipping > Promote Free Shipping in Mini Cart`
