@@ -1,0 +1,62 @@
+//
+//  Variables
+//  _____________________________________________
+@progress__height: 10px;
+@progress__border-radius: 10px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .shipping-promotion {
+        .block-content {
+            background-color: @page__background-color;
+            border: @border-width__base solid @theme__color__primary;
+            font-size: @font-size__l;
+            font-weight: @font-weight__bold;
+            margin: @indent__s 0;
+            padding: @indent__s;
+            text-align: center;
+            &.complete {
+                border-color: @theme__color__secondary;
+            }
+            .small {
+                font-size: @font-size__base;
+            }
+        }
+    }
+    .progress-bar {
+        background-color: @secondary__color;
+        border: @border-width__base solid @theme__color__primary;
+        border-radius: @progress__border-radius;
+        margin-top: @indent__xs;
+        height: @progress__height;
+        position: relative;
+        .progress {
+            background-color: @theme__color__primary;
+            position: absolute;
+            height: @progress__height;
+        }
+        &.full {
+            background-color: @theme__color__secondary;
+            border-color: @theme__color__secondary;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}
