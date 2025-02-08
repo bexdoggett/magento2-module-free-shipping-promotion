@@ -14,10 +14,7 @@ class Config
 
     private const FREE_SHIPPING_AMOUNT = 'carriers/freeshipping/free_shipping_subtotal';
 
-    /**
-     * @todo check tax setting
-     * tax_including
-     */
+    private const FREE_SHIPPING_AMOUNT_TAX_INCLUDED = 'carriers/freeshipping/tax_including';
 
     /**
      * @todo check applicable countries
@@ -64,6 +61,21 @@ class Config
     {
         return $this->scopeConfig->getValue(
             self::FREE_SHIPPING_AMOUNT,
+            StoreScopeInterface::SCOPE_STORE,
+            $store
+        );
+    }
+
+    /**
+     * Check if tax is included in amount
+     *
+     * @param \Magento\Store\Model\Store|null $store
+     * @return string|null
+     */
+    public function isAmountIncludingTax(Store $store = null): ?string
+    {
+        return $this->scopeConfig->getValue(
+            self::FREE_SHIPPING_AMOUNT_TAX_INCLUDED,
             StoreScopeInterface::SCOPE_STORE,
             $store
         );

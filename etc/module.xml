@@ -3,6 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="BeckyDoggett_FreeShippingPromotion">
         <sequence>
+            <module name="Magento_Checkout"/>
             <module name="Magento_OfflineShipping"/>
         </sequence>
     </module>

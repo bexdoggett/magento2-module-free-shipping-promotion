@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BeckyDoggett\FreeShippingPromotion\Block\Cart;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
 use BeckyDoggett\FreeShippingPromotion\Model\Config\Config as ConfigProvider;
 use Magento\Directory\Model\CurrencyFactory;
@@ -76,23 +77,36 @@ class ShippingPromotion extends Template
     }
 
     /**
+     * Check if amount includes tax
+     *
+     * @return string|null
+     */
+    public function isAmountIncludingTax(): ?string
+    {
+        return $this->configProvider->isAmountIncludingTax();
+    }
+
+    /**
      * Convert minimum order amount using current store currency
      *
-     * @return string | float
+     * @return string|float
      * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getFreeShippingMinimumOrderAmountInStoreCurrency(): string|float
     {
         $minAmount = $this->getFreeShippingMinimumOrderAmount();
-        $currentCurrency = $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
-        $baseCurrency = $this->_storeManager->getStore()->getBaseCurrency()->getCode();
 
-        if ($currentCurrency != $baseCurrency) {
-            $rate = $this->currencyFactory->create()->load($baseCurrency)->getAnyRate($currentCurrency);
-            $minAmount = $minAmount * $rate;
+        try {
+            $currentCurrency = $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
+            $baseCurrency = $this->_storeManager->getStore()->getBaseCurrency()->getCode();
+            if ($currentCurrency != $baseCurrency) {
+                $rate = $this->currencyFactory->create()->load($baseCurrency)->getAnyRate($currentCurrency);
+                $minAmount = $minAmount * $rate;
+            }
+        } catch (LocalizedException $e) {
+            $this->_logger->error($e->getMessage());
+            throw new LocalizedException(__('Something went wrong. Please check the error log for detail.'));
         }
-
         return $minAmount;
     }
 

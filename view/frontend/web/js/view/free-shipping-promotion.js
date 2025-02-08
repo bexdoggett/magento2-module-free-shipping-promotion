@@ -19,6 +19,7 @@ define([
         defaults: {
             template: 'BeckyDoggett_FreeShippingPromotion/free-shipping-promotion',
             minimumOrderAmount: 0,
+            includingTax: 0,
             priceLocaleFormat: {
                 decimalSymbol: '.',
                 groupLength: 3,
@@ -28,7 +29,7 @@ define([
                 precision: 2,
                 requiredPrecision: 2
             },
-            freeMinimumAmountMessage: 'Free shipping for orders over %1.',
+            freeMinimumAmountMessage: 'Free shipping for orders over %1 %2.',
             spendMoreMessage: 'Spend another %1 for free shipping.'
         },
 
@@ -36,7 +37,6 @@ define([
 
         initialize: function() {
             this._super();
-            this.cart = customerData.get('cart');
         },
 
         // Get cart items count
@@ -46,7 +46,12 @@ define([
 
         // Get cart subtotal
         getCartSubtotal: function() {
-            return customerData.get('cart')().subtotalAmount;
+            if (this.includingTax === '1') {
+                return customerData.get('cart-totals')().subtotalIncTax;
+            }
+            else {
+                return customerData.get('cart-totals')().subtotalExcTax;
+            }
         },
 
         // Check if current cart is eligible for Free Shipping
@@ -70,7 +75,10 @@ define([
         // Get free shipping avaialble when you spend x info message
         getFreeShippingMessage: function() {
             const minimumOrderFormatted = this.formatMinimumOrderAmount();
-            return $.mage.__(this.freeMinimumAmountMessage).replace('%1', minimumOrderFormatted);
+            const includingTaxNote = this.includingTax === '1' ? 'inc. tax' : 'exc. tax';
+            return $.mage.__(this.freeMinimumAmountMessage)
+                .replace('%1', minimumOrderFormatted)
+                .replace('%2', includingTaxNote);
         },
 
         // Calculate how much left to spend and format
