@@ -1,0 +1,20 @@
+<div data-bind="if: getCartItemsTotal() > 0">
+    <!-- ko if: hasFreeShipping() -->
+    <div class="block-content complete">
+        <p data-bind="i18n: 'Your order is eligible for Free Shipping!'"></p>
+        <div class="progress-bar full"></div>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: hasFreeShipping() -->
+    <div class="block-content">
+        <p>
+            <span data-bind="text: getFreeShippingMessage()"></span>
+            <br>
+            <span class="small" data-bind="text: getSpendXForFreeShippingMessage()"></span>
+        </p>
+        <div class="progress-bar">
+            <div class="progress" data-bind="style: { width: getProgressPercent() + '%' }"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

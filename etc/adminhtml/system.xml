@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers">
+            <group id="freeshipping">
+                <field id="promote_in_cart" translate="label" type="select"
+                       sortOrder="200"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       canRestore="1">
+                    <label><![CDATA[Promote Free Shipping in Cart]]></label>
+                    <comment>
+                        <![CDATA[Show customers amount left to spend before they qualify for free delivery.]]>
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="promote_in_minicart" translate="label" type="select"
+                       sortOrder="210"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       canRestore="1">
+                    <label><![CDATA[Promote Free Shipping in Mini Cart]]></label>
+                    <comment>
+                        <![CDATA[Show customers amount left to spend before they qualify for free delivery.]]>
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
