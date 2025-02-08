@@ -1,4 +1,4 @@
-# Free Shipping Promotion Magento Module
+# Free Shipping Promotion Magento Module [v1.0.0]
 
 ## Description
 Promote amount left to spend to qualify for free shipping
